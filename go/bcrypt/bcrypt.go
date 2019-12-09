@@ -46,8 +46,9 @@ func HandleVerifyPassword(writer http.ResponseWriter, request *http.Request) {
   }
   err = bcrypt.CompareHashAndPassword(password.([]byte), body)
   if err != nil {
-    log.Printf("Passwords didn't match for user: %v", username)
-    http.Error(writer, "Password not found", http.StatusBadRequest)
+    errorText := fmt.Sprintf("Passwords didn't match for user: %v", username)
+    log.Printf(errorText)
+    http.Error(writer, errorText, http.StatusForbidden)
     return
   }
   _, err = fmt.Fprint(writer, "OK")

@@ -1,0 +1,26 @@
+{
+  "name": "scalability_test",
+  "version": "1.0.0",
+  "description": "Scalability test server",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "author": "VPK",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node-ipc": "^9.1.2",
+    "typescript": "^3.7.2",
+    "tslint": "^5.20.1"
+  },
+  "dependencies": {
+    "@sindresorhus/fnv1a": "2.0.0",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "node-ipc": "^9.1.1"
+  }
+}
