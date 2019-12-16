@@ -35,6 +35,7 @@ export class Store {
         this.storeId = storeId;
         this.passwordStore = new Map<string, string>();
         this.userStore = new Map<string, IUser>();
+        ipc.config.id = storeId;
         ipc.serve(() => {
             ipc.server.on(SET_USER_DATA, (data, socket) => {
                 this.userStore.set(data.username, data.data);

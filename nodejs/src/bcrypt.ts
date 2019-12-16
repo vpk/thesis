@@ -21,7 +21,7 @@ export class BCrypt {
 
     public async setPassword(username: string, password: string): Promise<void> {
         const passwordHash = await BCrypt.encryptPassword(password);
-        this.storeClient.storePassword(username, passwordHash);
+        await this.storeClient.storePassword(username, passwordHash);
     }
 
     public async verifyPassword(username: string, password: string): Promise<boolean> {
