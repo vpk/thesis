@@ -14,6 +14,8 @@ defmodule ScalabilityTest.Application do
       # {ScalabilityTest.Worker, arg},
     ]
 
+    ScalabilityTest.UserStore.init_store()
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ScalabilityTest.Supervisor]

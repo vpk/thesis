@@ -12,11 +12,11 @@ defmodule ScalabilityTestWeb.Router do
   scope "/", ScalabilityTestWeb do
     pipe_through :api
 
-    post "/password/set/:username", PasswordController, :set_password
-    post "/password/verify/:username", PasswordController, :verify_password
+    post "/password/set/:user_name", PasswordController, :set_password
+    post "/password/verify/:user_name", PasswordController, :verify_password
     get "/longPoll", LongPollController, :index
-    get "/user/get/:username", UserController, :get_user
-    post "/user/set/:username", UserController, :set_user
+    get "/user/get/:user_name", UserController, :get_user
+    post "/user/set/:user_name", UserController, :set_user
     get "/", DefaultController, :index
 
   end
