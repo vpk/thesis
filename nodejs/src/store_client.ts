@@ -2,8 +2,9 @@
 import * as fnv1a from '@sindresorhus/fnv1a';
 import * as ipc from 'node-ipc';
 import {GET_PASSWORD, GET_USER_DATA, IPassword, IUser, SET_PASSWORD, SET_USER_DATA} from "./store";
+import {StoreInterface} from "./store_interface";
 
-export class StoreClient {
+export class StoreClient implements StoreInterface{
 
     private sequence: number;
     private readonly storeCount: number;

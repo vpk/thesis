@@ -4,11 +4,13 @@ import {Express} from 'express';
 import {BCrypt} from "./bcrypt";
 import {StoreClient} from "./store_client";
 import {Store} from "./store";
+import {StoreInterface} from "./store_interface";
+import {SingleStore} from "./single_store";
 
 export class Processor {
 
     private readonly app: Express;
-    private readonly storeClient: StoreClient;
+    private readonly storeClient: StoreInterface;
     private readonly store: Store;
     private readonly bcrypt: BCrypt;
     private readonly clientId: string;
@@ -18,8 +20,12 @@ export class Processor {
         this.clientId = clientId;
         this.clientCount = clientCount;
         this.app = express();
-        this.store = new Store(`Server-${this.clientId}`);
-        this.storeClient = new StoreClient(Array(this.clientCount).fill('').map((_, i) => `Server-${i}`));
+        if (clientCount == 0) {
+            this.storeClient = new SingleStore();
+        } else {
+            this.store = new Store(`Server-${this.clientId}`);
+            this.storeClient = new StoreClient(Array(this.clientCount).fill('').map((_, i) => `Server-${i}`));
+        }
         this.bcrypt = new BCrypt(this.storeClient);
     }
 
@@ -78,6 +84,7 @@ export class Processor {
         }
     }
 
+    // noinspection JSMethodCanBeStatic
     private async default(_, response) {
         response.status(200).send('OK');
     }

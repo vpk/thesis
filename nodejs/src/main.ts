@@ -23,7 +23,11 @@ if (cluster.isMaster) {
     }
 
     if (process.argv[2] === 'single') {
-
+        const processor = new Processor({
+            clientId: 'single',
+            clientCount: 0
+        });
+        processor.start();
     } else {
         const processCount = process.argv[2] === 'max' ? os.cpus().length : Number(process.argv[2]);
         for (let i = 0; i < processCount; i++) {

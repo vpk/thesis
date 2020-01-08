@@ -1,13 +1,13 @@
 import {compare, genSalt, hash} from 'bcryptjs'
-import {StoreClient} from "./store_client";
+import {StoreInterface} from "./store_interface";
 
 const PASSWORD_COST = 20;
 
 export class BCrypt {
 
-    private readonly storeClient: StoreClient;
+    private readonly storeClient: StoreInterface;
 
-    constructor(storeClient: StoreClient) {
+    constructor(storeClient: StoreInterface) {
         this.storeClient = storeClient;
     }
 
