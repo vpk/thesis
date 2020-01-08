@@ -9,12 +9,11 @@ defmodule ScalabilityTest.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      ScalabilityTestWeb.Endpoint
+      ScalabilityTestWeb.Endpoint,
       # Starts a worker by calling: ScalabilityTest.Worker.start_link(arg)
       # {ScalabilityTest.Worker, arg},
+      {ScalabilityTest.UserStore, []}
     ]
-
-    ScalabilityTest.UserStore.init_store()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

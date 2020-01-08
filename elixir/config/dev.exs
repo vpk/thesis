@@ -7,11 +7,12 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :scalability_test, ScalabilityTestWeb.Endpoint,
-  http: [port: 8080],
+  http: [port: 8080, protocol_options: [idle_timeout: 600_000]],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: []
+  watchers: [],
+  protocol_options: [idle_timeout: 600_000] # 10 minutes timeout
 
 # ## SSL Support
 #
