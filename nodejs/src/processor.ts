@@ -68,7 +68,7 @@ export class Processor {
 
     private async getUser(request, response) {
         if (request.params.username) {
-            const data = await this.storeClient.getUserData(request.params.usename);
+            const data = await this.storeClient.getUserData(request.params.username);
             response.status(200).send(data);
         } else {
             response.status(400).send('Missing username!');

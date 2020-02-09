@@ -1,7 +1,6 @@
 package userinfo
 
 import (
-	"./generator"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -24,15 +23,9 @@ func HandleGetUser(writer http.ResponseWriter, request *http.Request) {
 	username := request.URL.Path[len("/user/get/"):]
 	user, ok := users.Load(username)
 	if !ok {
-		user = User{
-			ID: username,
-			Name: generator.GetRandomName(),
-			Description: generator.GetRandomDescription(),
-			Age: generator.GetRandomAge(),
-			Heat: generator.GetRandomTemp(),
-			Groups: generator.GetRandomGroups(),
-		}
-		users.Store(username, user)
+		log.Printf("Error retrieving user: %v", username)
+		http.Error(writer, "User not found.", http.StatusBadRequest)
+		return
 	}
 	bytes, err := json.Marshal(user)
 	if err != nil {
