@@ -5,6 +5,11 @@ import csv
 
 USER_INFO = []
 
+with open('users.csv', 'r') as file:
+    reader = csv.reader(file, delimiter=';')
+    next(reader)
+    USER_INFO = list(reader)
+
 
 class UserTestTasks(TaskSet):
 
@@ -41,8 +46,4 @@ class UserTest(HttpLocust):
     def __init__(self):
         super(UserTest, self).__init__()
         global USER_INFO
-        if not USER_INFO:
-            with open('users.csv', 'r') as file:
-                reader = csv.reader(file, delimiter=';')
-                next(reader)
-                USER_INFO = list(reader)
+

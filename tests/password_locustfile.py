@@ -3,7 +3,10 @@ from locust import HttpLocust, TaskSet, task, between
 import csv
 
 USER_INFO = []
-
+with open('users.csv', 'r') as file:
+    reader = csv.reader(file, delimiter=';')
+    next(reader)
+    USER_INFO = list(reader)
 
 class PasswordTestTasks(TaskSet):
 
@@ -27,8 +30,3 @@ class PasswordTest(HttpLocust):
     def __init__(self):
         super(PasswordTest, self).__init__()
         global USER_INFO
-        if not USER_INFO:
-            with open('users.csv', 'r') as file:
-                reader = csv.reader(file, delimiter=';')
-                next(reader)
-                USER_INFO = list(reader)
